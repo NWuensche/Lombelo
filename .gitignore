@@ -1,0 +1,23 @@
+target/
+.settings/
+.project
+.classpath
+.springBeans
+.DS_Store
+.idea
+.exe
+.pdf
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+out/
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
