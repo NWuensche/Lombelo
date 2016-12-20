@@ -1,7 +1,7 @@
 # Lombelo - A note taking app, written in Java
 
 ## Tools
-* Spring as the MVC tool
+* Spring Boot as the MVC tool
 * Bootstrap + Thymeleaf to create Views
 
 ## Run Lombelo
