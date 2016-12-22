@@ -16,16 +16,19 @@
     <body>
 
     <div id="wrapper">
-        <div id="sidebar-wrapper">
 
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
             <a href="#" class="sidebar-item sidebar-brand">Lombelo</a>
             <ul class="sidebar-nav">
-                <a th:href="@{/addNote}"><li class="sidebar-item"> Add note </li> </a>
+                <a th:href="@{/addNote}"><li class="sidebar-item"> Add Note </li> </a>
                 <hr/>
-                <a href="#"><li class="sidebar-item"> Another link </li> </a>
+                <a th:href="@{/showNotes}"><li class="sidebar-item"> All Notes </li> </a>
                 <a href="#"><li class="sidebar-item"> Another link </li> </a>
             </ul>
         </div>
+
+        <!-- Main content -->
         <div id="page-content-wrapper">
             <div class="page-content">
                 <div class="container">
@@ -37,6 +40,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     </body>
