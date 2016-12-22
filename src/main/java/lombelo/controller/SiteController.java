@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -40,6 +41,12 @@ public class SiteController {
     public String mapShowNotes(Model model) {
         model.addAttribute("notes", notes.findAll());
         return "showNotes";
+    }
+
+    @RequestMapping("/editNote/{Id}")
+    public String mapEditNots(@PathVariable Long Id, Model model) {
+        model.addAttribute("note", notes.findOne(Id));
+        return "editNote";
     }
 
 }

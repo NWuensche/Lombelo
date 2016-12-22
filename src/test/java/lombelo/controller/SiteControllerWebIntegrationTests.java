@@ -2,19 +2,16 @@ package lombelo.controller;
 import lombelo.AbstractionWebIntegrationTests;
 import lombelo.model.Note;
 import lombelo.model.NoteRepository;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -67,6 +64,32 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
         mvc.perform(serviceRequest)
             .andExpect(model().attribute("notes", notes.findAll()))
             .andExpect(view().name("showNotes"));
+    }
+
+    @Test
+    public void executeEditNote() throws Exception {
+        Note note = new Note("title", "text");
+        notes.save(note);
+
+        RequestBuilder serviceRequest = get("/editNote/" + note.getId());
+
+        mvc.perform(serviceRequest)
+                .andExpect(view().name("editNote"));
+    }
+
+    @Test
+    public void executeFinishEditNote() throws Exception {
+        Note note = new Note("title", "text");
+        notes.save(note);
+
+        RequestBuilder serviceRequest = get("/editNote/finished/" + note.getId())
+                .param("editedNoteId", note.getId().toString())
+                .param("titleOfNote", "newTitle")
+                .param("textOfNote", "newText");
+
+        mvc.perform(serviceRequest)
+                .andExpect(model().attribute("notes", notes.findAll()))
+                .andExpect(view().name("showNotes"));
     }
 
 }
