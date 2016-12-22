@@ -23,4 +23,9 @@ public class SiteController {
         return "addNote";
     }
 
+    @RequestMapping("/addNote/created")
+    public String saveNewNote(@ModelAttribute ContentOfNote content) {
+        return "landingPage";
+    }
+
 }

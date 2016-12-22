@@ -38,4 +38,14 @@ public class SiteControllerWebIntegrationTests {
                 .andExpect(view().name("addNote"));
     }
 
+    @Test
+    public void executeSaveNewNote() throws Exception{
+        RequestBuilder serviceRequest = post("/addNote/created")
+                .param("titleOfNote", "My Note")
+                .param("contentOfNote", "BlaBlaBla");
+
+        mvc.perform(serviceRequest)
+                .andExpect(view().name("landingPage"));
+    }
+
 }
