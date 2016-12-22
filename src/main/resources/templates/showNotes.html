@@ -47,11 +47,12 @@
                                         <th th:text="${note.dateOfCreation}"></th>
                                         <th th:text="${note.title}"></th>
                                         <td>
-                                            <a th:href = "@{'/editNote/' + ${note.id}}"><button type="button" class="btn btn-primary" data-toggle="modal">
+                                            <a th:href = "@{'/editNote/' + ${note.id}}">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal">
                                                 edit
-                                            </button></a>
+                                                </button>
+                                            </a>
                                             <button type="button" class="btn" data-toggle="modal">
-                                                <!--th:attr="data-target='#details'+${employee.id}"-->
                                                 remove
                                             </button>
                                         </td>

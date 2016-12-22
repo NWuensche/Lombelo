@@ -44,7 +44,7 @@ public class SiteController {
     }
 
     @RequestMapping("/editNote/{Id}")
-    public String mapEditNots(@PathVariable Long Id, Model model) {
+    public String mapEditNotes(@PathVariable Long Id, Model model) {
         model.addAttribute("note", notes.findOne(Id));
         return "editNote";
     }
