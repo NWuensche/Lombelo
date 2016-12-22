@@ -1,12 +1,20 @@
 package lombelo.controller;
+import lombelo.AbstractionWebIntegrationTests;
+import lombelo.model.Note;
+import lombelo.model.NoteRepository;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Optional;
+import java.util.stream.StreamSupport;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -14,12 +22,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * @author Niklas Wünsche
  */
+public class SiteControllerWebIntegrationTests extends AbstractionWebIntegrationTests {
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(SiteController.class)
-public class SiteControllerWebIntegrationTests {
-
-    @Autowired private MockMvc mvc;
+    @Autowired private NoteRepository notes;
 
     @Test
     public void executeLandingPageMapper() throws Exception {
