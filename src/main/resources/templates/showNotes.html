@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}"/>
+
+        <title>Getting Started: Serving Web Content</title>
+    </head>
+
+    <body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <a href="#" class="sidebar-item sidebar-brand">Lombelo</a>
+            <ul class="sidebar-nav">
+                <a th:href="@{/addNote}"><li class="sidebar-item"> Add Note </li> </a>
+                <hr/>
+                <a th:href="@{/showNotes}"><li class="sidebar-item"> All Notes </li> </a>
+                <a href="#"><li class="sidebar-item"> Another link </li> </a>
+            </ul>
+        </div>
+
+        <!-- Main content -->
+        <div id="page-content-wrapper">
+            <div class="page-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="container__table">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Date Of Creation</th>
+                                        <th>Title</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="note : ${notes}">
+                                        <th th:text="${note.dateOfCreation}"></th>
+                                        <th th:text="${note.title}"></th>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal">
+                                                    <!--th:attr="data-target='#details'+${employee.id}"-->
+                                                edit
+                                            </button>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal">
+                                                <!--th:attr="data-target='#details'+${employee.id}"-->
+                                                remove
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </body>
+</html>
