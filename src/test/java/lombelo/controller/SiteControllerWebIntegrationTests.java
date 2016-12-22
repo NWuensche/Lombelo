@@ -61,4 +61,12 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
         assertThat(savedNote.isPresent(), is(true));
     }
 
+    @Test
+    public void executeShowAllNotes() throws Exception {
+        RequestBuilder serviceRequest = post("/showNotes");
+        mvc.perform(serviceRequest)
+            .andExpect(model().attribute("notes", notes.findAll()))
+            .andExpect(view().name("showNotes"));
+    }
+
 }

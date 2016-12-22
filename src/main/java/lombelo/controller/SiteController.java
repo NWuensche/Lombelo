@@ -3,6 +3,8 @@ package lombelo.controller;
 import lombelo.model.ContentOfNote;
 import lombelo.model.Note;
 import lombelo.model.NoteRepository;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +34,12 @@ public class SiteController {
     public String saveNewNote(@ModelAttribute ContentOfNote content) {
         notes.save(new Note(content));
         return "landingPage";
+    }
+
+    @RequestMapping("/showNotes")
+    public String mapShowNotes(Model model) {
+        model.addAttribute("notes", notes.findAll());
+        return "showNotes";
     }
 
 }
