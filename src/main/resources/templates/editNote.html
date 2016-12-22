@@ -34,7 +34,32 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            Dashboard
+                            <form method="post" th:action="@{'/editNote/finished/' + ${note.id}}" th:object="${content}">
+                                <div class="form__bg">
+                                    <div class="dark__bg">
+                                        <h2>Edit Note</h2>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input name="titleOfNote" type="text" class="form-control"
+                                               th:value="${note.title}" required="true" autofocus="autofocus" >
+                                        </input>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Text</label>
+                                        <textarea name="textOfNote" id="textOfNote" class="form-control" rows="5"
+                                                  th:text="${note.text}" required="true"/>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class=" col-xs-6 text-xs-right">
+                                            <button type="submit" class="button btn btn-primary">Edit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

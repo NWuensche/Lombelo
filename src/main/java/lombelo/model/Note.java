@@ -1,6 +1,8 @@
 package lombelo.model;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -13,9 +15,10 @@ import java.time.LocalDate;
  */
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED, onConstructor = @__({@Deprecated}))
 public class Note {
 
-    @Id @GeneratedValue private Long Id;
+    @Id @GeneratedValue private Long id;
     @Setter private String title;
     @Setter private String text;
     private LocalDate dateOfCreation;
