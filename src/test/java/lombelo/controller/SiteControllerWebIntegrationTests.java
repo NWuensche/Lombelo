@@ -8,6 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 /**
@@ -26,6 +27,15 @@ public class SiteControllerWebIntegrationTests {
 
         mvc.perform(serviceRequest)
                 .andExpect(view().name("landingPage"));
+    }
+
+    @Test
+    public void testAddNoteMapper() throws Exception {
+        RequestBuilder serviceRequest = post("/addNote");
+
+        mvc.perform(serviceRequest)
+                .andExpect(model().attributeExists("content"))
+                .andExpect(view().name("addNote"));
     }
 
 }
