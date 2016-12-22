@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}"/>
+
+        <title>Getting Started: Serving Web Content</title>
+    </head>
+
+    <body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <a href="#" class="sidebar-item sidebar-brand">Lombelo</a>
+            <ul class="sidebar-nav">
+                <a th:href="@{/addNote}"><li class="sidebar-item"> Add Note </li> </a>
+                <hr/>
+                <a th:href="@{/showNotes}"><li class="sidebar-item"> All Notes </li> </a>
+                <a href="#"><li class="sidebar-item"> Another link </li> </a>
+            </ul>
+        </div>
+
+        <!-- Main content -->
+        <div id="page-content-wrapper">
+            <div class="page-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form method="post" th:action="@{'/editNote/finished/' + ${note.id}}" th:object="${content}">
+                                <div class="form__bg">
+                                    <div class="dark__bg">
+                                        <h2>Add a New Note</h2>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input name="titleOfNote" type="text" class="form-control"
+                                               th:value="${note.title}" required="true" autofocus="autofocus" >
+                                        </input>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Text</label>
+                                        <textarea name="textOfNote" id="textOfNote" class="form-control" rows="5"
+                                                  th:text="${note.text}" required="true"/>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class=" col-xs-6 text-xs-right">
+                                            <button type="submit" class="button btn btn-primary">Create</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </body>
+</html>
