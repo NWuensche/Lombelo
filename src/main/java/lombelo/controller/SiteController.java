@@ -43,15 +43,15 @@ public class SiteController {
         return "showNotes";
     }
 
-    @RequestMapping("/editNote/{Id}")
-    public String mapEditNotes(@PathVariable Long Id, Model model) {
-        model.addAttribute("note", notes.findOne(Id));
+    @RequestMapping("/editNote/{id}")
+    public String mapEditNotes(@PathVariable Long id, Model model) {
+        model.addAttribute("note", notes.findOne(id));
         return "editNote";
     }
 
-    @RequestMapping("/editNote/finished/{Id}")
-    public String mapEditFinisedNotes(@PathVariable Long Id, @ModelAttribute ContentOfNote content) {
-        Note toEdit = notes.findOne(Id);
+    @RequestMapping("/editNote/finished/{id}")
+    public String mapEditFinisedNotes(@PathVariable Long id, @ModelAttribute ContentOfNote content) {
+        Note toEdit = notes.findOne(id);
 
         toEdit.setTitle(content.getTitleOfNote());
         toEdit.setText(content.getTextOfNote());
@@ -61,9 +61,9 @@ public class SiteController {
         return "redirect:/showNotes";
     }
 
-    @RequestMapping("/removeNote/{Id}")
-    public String mapEditFinisedNotes(@PathVariable Long Id) {
-        Note toRemove = notes.findOne(Id);
+    @RequestMapping("/removeNote/{id}")
+    public String mapEditFinisedNotes(@PathVariable Long id) {
+        Note toRemove = notes.findOne(id);
         notes.delete(toRemove);
 
         return "redirect:/showNotes";
