@@ -7,6 +7,8 @@ import lombok.Data;
  */
 @Data
 public class ContentOfNote {
+
     private String titleOfNote;
     private String textOfNote;
+
 }
