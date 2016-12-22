@@ -22,7 +22,7 @@ public class SiteControllerWebIntegrationTests {
     @Autowired private MockMvc mvc;
 
     @Test
-    public void testLandingPageMapper() throws Exception {
+    public void executeLandingPageMapper() throws Exception {
         RequestBuilder serviceRequest = post("/");
 
         mvc.perform(serviceRequest)
@@ -30,7 +30,7 @@ public class SiteControllerWebIntegrationTests {
     }
 
     @Test
-    public void testAddNoteMapper() throws Exception {
+    public void executeAddNoteMapper() throws Exception {
         RequestBuilder serviceRequest = post("/addNote");
 
         mvc.perform(serviceRequest)
