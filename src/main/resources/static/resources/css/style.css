@@ -10,12 +10,19 @@
     margin-left: -250px;
     left: 250px;
     width: 250px;
-    background: #34fd12;
+    background: darkblue;
     position: fixed;
     height: 100%;
     overflow-y: auto;
     z-index: 1000;
     transition: all 0.4s ease 0s;
+}
+
+.sidebar-item {
+    margin-top: 2%;
+    font-family: 'Lato', sans-serif;
+    font-size: 25pt;
+    color:white
 }
 
 #page-content-wrapper {
@@ -24,11 +31,17 @@
 
 .sidebar-nav {
     position: absolute;
-    top: 0;
+    top: 13%;
     width: 250px;
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.sidebar-brand {
+    position: absolute;
+    top: 4%;
+
 }
 
 @media (max-width:767px) {
