@@ -49,4 +49,16 @@ public class SiteController {
         return "editNote";
     }
 
+    @RequestMapping("/editNote/finished/{Id}")
+    public String mapEditFinisedNotes(@PathVariable Long Id, @ModelAttribute ContentOfNote content) {
+        Note toEdit = notes.findOne(Id);
+
+        toEdit.setTitle(content.getTitleOfNote());
+        toEdit.setText(content.getTextOfNote());
+
+        notes.save(toEdit);
+
+        return "redirect:/showNotes";
+    }
+
 }
