@@ -14,6 +14,7 @@ import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 /**
@@ -43,9 +44,10 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
     @Test
     public void executeSaveNewNote() throws Exception {
         String noteTitle = "My Note";
+        String textTitle = "BlaBlaBla";
         RequestBuilder serviceRequest = post("/addNote/created")
                 .param("titleOfNote", noteTitle)
-                .param("contentOfNote", "BlaBlaBla");
+                .param("textOfNote", textTitle);
 
         mvc.perform(serviceRequest)
                 .andExpect(view().name("landingPage"));
@@ -56,6 +58,7 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
                 .findAny();
 
         assertThat(savedNote.isPresent(), is(true));
+        assertThat(savedNote.get().getText(), is(textTitle));
     }
 
     @Test
@@ -82,14 +85,20 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
         Note note = new Note("title", "text");
         notes.save(note);
 
-        RequestBuilder serviceRequest = get("/editNote/finished/" + note.getId())
-                .param("editedNoteId", note.getId().toString())
+        RequestBuilder serviceRequest = post("/editNote/finished/" + note.getId())
                 .param("titleOfNote", "newTitle")
                 .param("textOfNote", "newText");
 
         mvc.perform(serviceRequest)
-                .andExpect(model().attribute("notes", notes.findAll()))
-                .andExpect(view().name("showNotes"));
+                .andExpect(status().is3xxRedirection());
+
+        Optional<Note> editedNote = StreamSupport
+                .stream(notes.findAll().spliterator(), false)
+                .filter(savedNote -> savedNote.getTitle().equals("newTitle"))
+                .findAny();
+
+        assertThat(editedNote.isPresent(), is(true));
+        assertThat(editedNote.get().getText(), is("newText"));
     }
 
 }
