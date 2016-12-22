@@ -15,17 +15,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(WelcomeController.class)
-public class WelcomeControllerWebIntegrationTests {
+@WebMvcTest(SiteController.class)
+public class SiteControllerWebIntegrationTests {
 
     @Autowired private MockMvc mvc;
 
     @Test
-    public void welcomeControllerWorks() throws Exception {
-        RequestBuilder serviceRequest = post("/welcome");
+    public void testLandingPageMapper() throws Exception {
+        RequestBuilder serviceRequest = post("/");
 
         mvc.perform(serviceRequest)
-                .andExpect(view().name("welcome"));
+                .andExpect(view().name("landingPage"));
     }
 
 }

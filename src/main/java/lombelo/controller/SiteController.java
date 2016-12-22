@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Niklas Wünsche
  */
 @Controller
-public class WelcomeController {
+public class SiteController {
 
-    @RequestMapping("/welcome")
-    public String mapWelcome() {
-        return "welcome";
+    @RequestMapping("/")
+    public String mapLandingPage() {
+        return "landingPage";
     }
 
 }
