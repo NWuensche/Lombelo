@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -20,7 +20,7 @@
 
             <a href="#" class="sidebar-item sidebar-brand">Lombelo</a>
             <ul class="sidebar-nav">
-                <a href="#"><li class="sidebar-item"> Add note </li> </a>
+                <a th:href="@{/addNote}"><li class="sidebar-item"> Add note </li> </a>
                 <hr/>
                 <a href="#"><li class="sidebar-item"> Another link </li> </a>
                 <a href="#"><li class="sidebar-item"> Another link </li> </a>
