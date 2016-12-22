@@ -61,4 +61,12 @@ public class SiteController {
         return "redirect:/showNotes";
     }
 
+    @RequestMapping("/removeNote/{Id}")
+    public String mapEditFinisedNotes(@PathVariable Long Id) {
+        Note toRemove = notes.findOne(Id);
+        notes.delete(toRemove);
+
+        return "redirect:/showNotes";
+    }
+
 }

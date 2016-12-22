@@ -101,4 +101,22 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
         assertThat(editedNote.get().getText(), is("newText"));
     }
 
+    @Test
+    public void executeRemoveNote() throws Exception {
+        Note toRemove = new Note("remove", "remove");
+        notes.save(toRemove);
+
+        RequestBuilder serviceRequest = post("/removeNote/" + toRemove.getId());
+
+        mvc.perform(serviceRequest)
+                .andExpect(status().is3xxRedirection());
+
+        Optional<Note> editedNote = StreamSupport
+                .stream(notes.findAll().spliterator(), false)
+                .filter(savedNote -> savedNote.getTitle().equals("remove"))
+                .findAny();
+
+        assertThat(editedNote.isPresent(), is(false));
+    }
+
 }

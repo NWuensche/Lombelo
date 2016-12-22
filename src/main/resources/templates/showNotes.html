@@ -52,9 +52,13 @@
                                                 edit
                                                 </button>
                                             </a>
+
+                                            <a th:href = "@{'/removeNote/' + ${note.id}}">
                                             <button type="button" class="btn" data-toggle="modal">
                                                 remove
                                             </button>
+                                            </a>
+
                                         </td>
                                     </tr>
                                     </tbody>
