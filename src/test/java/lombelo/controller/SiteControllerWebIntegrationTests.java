@@ -44,13 +44,21 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
     }
 
     @Test
-    public void executeSaveNewNote() throws Exception{
+    public void executeSaveNewNote() throws Exception {
+        String noteTitle = "My Note";
         RequestBuilder serviceRequest = post("/addNote/created")
-                .param("titleOfNote", "My Note")
+                .param("titleOfNote", noteTitle)
                 .param("contentOfNote", "BlaBlaBla");
 
         mvc.perform(serviceRequest)
                 .andExpect(view().name("landingPage"));
+
+        Optional<Note> savedNote = StreamSupport
+                .stream(notes.findAll().spliterator(), false)
+                .filter(note -> note.getTitle().equals(noteTitle))
+                .findAny();
+
+        assertThat(savedNote.isPresent(), is(true));
     }
 
 }

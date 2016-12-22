@@ -1,6 +1,9 @@
 package lombelo.controller;
 
 import lombelo.model.ContentOfNote;
+import lombelo.model.Note;
+import lombelo.model.NoteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class SiteController {
+
+    @Autowired NoteRepository notes;
 
     @RequestMapping("/")
     public String mapLandingPage() {
@@ -25,6 +30,7 @@ public class SiteController {
 
     @RequestMapping("/addNote/created")
     public String saveNewNote(@ModelAttribute ContentOfNote content) {
+        notes.save(new Note(content));
         return "landingPage";
     }
 
