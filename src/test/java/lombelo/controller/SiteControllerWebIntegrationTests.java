@@ -1,5 +1,7 @@
 package lombelo.controller;
 import lombelo.AbstractionWebIntegrationTests;
+import lombelo.model.Account;
+import lombelo.model.AccountRepository;
 import lombelo.model.Note;
 import lombelo.model.NoteRepository;
 import org.junit.Test;
@@ -26,6 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class SiteControllerWebIntegrationTests extends AbstractionWebIntegrationTests {
 
     @Autowired private NoteRepository notes;
+    @Autowired private AccountRepository accounts;
 
     @Test
     public void executeLandingPageMapper() throws Exception {
@@ -138,6 +141,46 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
 
         mvc.perform(serviceRequest)
                 .andExpect(view().name("showNotes"));
+    }
+
+    @Test
+    public void executeSettings() throws Exception {
+        RequestBuilder serviceRequest = post("/settings");
+
+        mvc.perform(serviceRequest)
+                .andExpect(model().attributeExists("userName"))
+                .andExpect(model().attributeExists("password"))
+                .andExpect(view().name("settings"));
+    }
+
+    @Test
+    public void changeUser() throws Exception {
+        RequestBuilder serviceRequest = post("/settings/finished")
+                .param("userName", "name")
+                .param("password", "pass");
+
+        mvc.perform(serviceRequest)
+                .andExpect(view().name("landingPage"));
+
+        Account userAccount = StreamSupport.stream(accounts.findAll().spliterator(), false).findFirst().get();
+
+        assertThat(userAccount.getUserName(), is("name"));
+        assertThat(userAccount.getPassword(), is("pass"));
+
+        // Change again
+
+        RequestBuilder serviceRequest2 = post("/settings/finished")
+                .param("userName", "name2")
+                .param("password", "pass2");
+
+        mvc.perform(serviceRequest2)
+                .andExpect(view().name("landingPage"));
+
+        assertThat(accounts.count(), is(1l));
+        Account userAccount2 = StreamSupport.stream(accounts.findAll().spliterator(), false).findFirst().get();
+
+        assertThat(userAccount2.getUserName(), is("name2"));
+        assertThat(userAccount2.getPassword(), is("pass2"));
     }
 
 }
