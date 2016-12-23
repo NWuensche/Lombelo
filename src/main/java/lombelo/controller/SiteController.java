@@ -1,8 +1,6 @@
 package lombelo.controller;
 
-import lombelo.model.ContentOfNote;
-import lombelo.model.Note;
-import lombelo.model.NoteRepository;
+import lombelo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +17,7 @@ import java.util.Optional;
 public class SiteController {
 
     @Autowired NoteRepository notes;
+    @Autowired AccountRepository accounts;
 
     @RequestMapping("/")
     public String mapLandingPage() {
@@ -74,6 +73,26 @@ public class SiteController {
         notes.delete(toRemove);
 
         return "redirect:/showNotes";
+    }
+
+    @RequestMapping("/settings")
+    public String mapSettings(Model model) {
+        model.addAttribute("userName", "");
+        model.addAttribute("password", "");
+
+        return "settings";
+    }
+
+    @RequestMapping("/settings/finished")
+    public String mapSettings(@ModelAttribute(value="userName") String userName,
+                              @ModelAttribute(value="password") String password) {
+
+        accounts.deleteAll();
+
+        Account newUser = new Account(userName, password);
+        accounts.save(newUser);
+
+        return "landingPage";
     }
 
 }
