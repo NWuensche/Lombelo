@@ -3,8 +3,6 @@ package lombelo.controller;
 import lombelo.model.ContentOfNote;
 import lombelo.model.Note;
 import lombelo.model.NoteRepository;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * @author Niklas Wünsche
@@ -28,6 +23,11 @@ public class SiteController {
     @RequestMapping("/")
     public String mapLandingPage() {
         return "landingPage";
+    }
+
+    @RequestMapping("/login")
+    public String mapLoginPage() {
+        return "login";
     }
 
     @RequestMapping("/addNote")
