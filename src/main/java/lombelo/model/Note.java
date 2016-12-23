@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,7 +43,7 @@ public class Note {
      * @param tags gap between words can be " "; ","; ", " ," or " , "
      * @return
      */
-    private HashSet<String> splitTags(String tags) {
+    public static HashSet<String> splitTags(String tags) {
         return (HashSet) Arrays.stream(tags.split("((\\s,*\\s*)|(\\s*,*\\s)|(\\s*,\\s*))")).collect(Collectors.toSet());
     }
 
@@ -52,6 +53,15 @@ public class Note {
 
     public String getTagsAsString() {
         return tags.stream().reduce((a, b) -> a.concat(", ").concat(b)).orElse("");
+    }
+
+    public boolean containsAllTags(String searchTags) {
+        if(StringUtils.isBlank(searchTags)) {
+            return true;
+        }
+
+        HashSet<String> givenTagsSet = splitTags(searchTags);
+        return tags.containsAll(givenTagsSet);
     }
 
 }

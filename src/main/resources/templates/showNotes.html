@@ -34,6 +34,23 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
+                            <form method="post" th:action="@{/showNotes}" th:object="${searchTags}">
+                                <div class="form__bg">
+                                    <div class="form-group">
+                                        <label>Tags</label>
+                                        <input name="searchTags" type="text" class="form-control" placeholder="Tags"
+                                               required="false"/>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class=" col-xs-6 text-xs-right">
+                                            <button type="submit" class="button btn btn-primary" autofocus="autofocus">
+                                                Search
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                             <div class="container__table">
                                 <table class="table table-striped">
                                     <thead>
@@ -44,7 +61,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="note : ${notes}">
+                                    <tr th:each="note : ${notes}" th:if="${note.containsAllTags(searchTags) == true}">
                                         <th th:text="${note.dateOfCreation}"></th>
                                         <th th:text="${note.title}"></th>
                                         <th th:text="${note.getTagsAsString()}"></th>

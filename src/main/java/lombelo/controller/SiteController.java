@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 /**
  * @author Niklas Wünsche
  */
@@ -38,8 +43,9 @@ public class SiteController {
     }
 
     @RequestMapping("/showNotes")
-    public String mapShowNotes(Model model) {
+    public String mapShowNotes(Model model, @ModelAttribute(value="searchTags") Optional<String> searchTags) {
         model.addAttribute("notes", notes.findAll());
+        model.addAttribute("searchTags", searchTags.orElse(""));
         return "showNotes";
     }
 

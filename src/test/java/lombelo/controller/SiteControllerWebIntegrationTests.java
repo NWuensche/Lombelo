@@ -7,6 +7,7 @@ import org.mockito.internal.util.collections.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.RequestBuilder;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
@@ -120,6 +121,21 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
                 .findAny();
 
         assertThat(editedNote.isPresent(), is(false));
+    }
+
+    @Test
+    public void executeSearchByTags() throws Exception {
+        Note note = new Note("title", "text", "findT1, b");
+        Note note2 = new Note("title", "text", "findT2, b");
+        Note note3 = new Note("title", "text", "a, b");
+
+        notes.save(Arrays.asList(note, note2, note3));
+
+        RequestBuilder serviceRequest = post("/showNotes")
+                .param("searchTags", "findT1, findT2");
+
+        mvc.perform(serviceRequest)
+                .andExpect(view().name("showNotes"));
     }
 
 }
