@@ -55,6 +55,7 @@ public class SiteController {
 
         toEdit.setTitle(content.getTitleOfNote());
         toEdit.setText(content.getTextOfNote());
+        toEdit.setTags(content.getTagsOfNote());
 
         notes.save(toEdit);
 

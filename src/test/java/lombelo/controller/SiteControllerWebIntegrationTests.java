@@ -3,6 +3,7 @@ import lombelo.AbstractionWebIntegrationTests;
 import lombelo.model.Note;
 import lombelo.model.NoteRepository;
 import org.junit.Test;
+import org.mockito.internal.util.collections.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.RequestBuilder;
 
@@ -47,7 +48,8 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
         String textTitle = "BlaBlaBla";
         RequestBuilder serviceRequest = post("/addNote/created")
                 .param("titleOfNote", noteTitle)
-                .param("textOfNote", textTitle);
+                .param("textOfNote", textTitle)
+                .param("tagsOfNote", "");
 
         mvc.perform(serviceRequest)
                 .andExpect(view().name("landingPage"));
@@ -71,23 +73,23 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
 
     @Test
     public void executeEditNote() throws Exception {
-        Note note = new Note("title", "text");
+        Note note = new Note("title", "text", "");
         notes.save(note);
 
         RequestBuilder serviceRequest = get("/editNote/" + note.getId());
-
         mvc.perform(serviceRequest)
                 .andExpect(view().name("editNote"));
     }
 
     @Test
     public void executeFinishEditNote() throws Exception {
-        Note note = new Note("title", "text");
+        Note note = new Note("title", "text", "");
         notes.save(note);
 
         RequestBuilder serviceRequest = post("/editNote/finished/" + note.getId())
                 .param("titleOfNote", "newTitle")
-                .param("textOfNote", "newText");
+                .param("textOfNote", "newText")
+                .param("tagsOfNote", "a b,c, d , e");
 
         mvc.perform(serviceRequest)
                 .andExpect(status().is3xxRedirection());
@@ -99,11 +101,12 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
 
         assertThat(editedNote.isPresent(), is(true));
         assertThat(editedNote.get().getText(), is("newText"));
+        assertThat(editedNote.get().getTags(), is(Sets.newSet("a", "b", "c", "d", "e")));
     }
 
     @Test
     public void executeRemoveNote() throws Exception {
-        Note toRemove = new Note("remove", "remove");
+        Note toRemove = new Note("remove", "remove", "");
         notes.save(toRemove);
 
         RequestBuilder serviceRequest = post("/removeNote/" + toRemove.getId());

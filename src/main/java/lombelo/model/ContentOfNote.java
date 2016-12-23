@@ -10,5 +10,6 @@ public class ContentOfNote {
 
     private String titleOfNote;
     private String textOfNote;
+    private String tagsOfNote;
 
 }

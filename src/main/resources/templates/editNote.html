@@ -43,14 +43,19 @@
                                     <div class="form-group">
                                         <label>Title</label>
                                         <input name="titleOfNote" type="text" class="form-control"
-                                               th:value="${note.title}" required="true" autofocus="autofocus" >
-                                        </input>
+                                               th:value="${note.title}" required="true" autofocus="autofocus"/>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Text</label>
                                         <textarea name="textOfNote" id="textOfNote" class="form-control" rows="5"
                                                   th:text="${note.text}" required="true"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input name="tagsOfNote" type="text" class="form-control"
+                                               th:value="${note.getTagsAsString()}" required="false" autofocus="autofocus"/>
                                     </div>
 
                                     <div class="row">
