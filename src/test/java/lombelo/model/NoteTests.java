@@ -1,6 +1,7 @@
 package lombelo.model;
 
 import org.junit.Test;
+import org.mockito.internal.util.collections.Sets;
 
 import java.time.LocalDate;
 
@@ -16,16 +17,21 @@ public class NoteTests {
     public void createNoteWithRightDate() {
         String title = "title";
         String text = "text";
-        Note note = new Note(title, text);
+        String tags = "a b,c, d , e";
+        Note note = new Note(title, text, tags);
         assertThat(note.getDateOfCreation(), is(LocalDate.now()));
 
         ContentOfNote content = new ContentOfNote();
         content.setTitleOfNote(title);
         content.setTextOfNote(text);
+        content.setTagsOfNote(tags);
+
         Note note2 = new Note(content);
+
         assertThat(note2.getDateOfCreation(), is(LocalDate.now()));
         assertThat(note2.getTitle(), is(title));
-        assertThat(note2.getText(), is(text));
+        assertThat(note2.getTags(), is(Sets.newSet("a", "b", "c", "d", "e")));
+        assertThat(note2.getTagsAsString(), is("a, b, c, d, e"));
     }
 
 }

@@ -40,12 +40,14 @@
                                     <tr>
                                         <th>Date Of Creation</th>
                                         <th>Title</th>
+                                        <th>Tags</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr th:each="note : ${notes}">
                                         <th th:text="${note.dateOfCreation}"></th>
                                         <th th:text="${note.title}"></th>
+                                        <th th:text="${note.getTagsAsString()}"></th>
                                         <td>
                                             <a th:href = "@{'/editNote/' + ${note.id}}">
                                                 <button type="button" class="btn btn-primary" data-toggle="modal">
