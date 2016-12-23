@@ -7,6 +7,7 @@ import org.mockito.internal.util.collections.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.RequestBuilder;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
@@ -102,6 +103,7 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
 
         assertThat(editedNote.isPresent(), is(true));
         assertThat(editedNote.get().getText(), is("newText"));
+        assertThat(editedNote.get().getLastChanged(), is(LocalDate.now()));
         assertThat(editedNote.get().getTags(), is(Sets.newSet("a", "b", "c", "d", "e")));
     }
 

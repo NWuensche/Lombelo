@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
@@ -62,6 +64,7 @@ public class SiteController {
         toEdit.setTitle(content.getTitleOfNote());
         toEdit.setText(content.getTextOfNote());
         toEdit.setTags(content.getTagsOfNote());
+        toEdit.setLastChanged(LocalDate.now());
 
         notes.save(toEdit);
 

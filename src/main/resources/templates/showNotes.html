@@ -55,14 +55,14 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Date Of Creation</th>
+                                        <th>Date of Last Change</th>
                                         <th>Title</th>
                                         <th>Tags</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr th:each="note : ${notes}" th:if="${note.containsAllTags(searchTags) == true}">
-                                        <th th:text="${note.dateOfCreation}"></th>
+                                        <th th:text="${note.lastChanged}"></th>
                                         <th th:text="${note.title}"></th>
                                         <th th:text="${note.getTagsAsString()}"></th>
                                         <td>

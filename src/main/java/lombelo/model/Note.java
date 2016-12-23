@@ -26,13 +26,13 @@ public class Note {
     @Setter private String title;
     @Setter private String text;
     private HashSet<String> tags;
-    private LocalDate dateOfCreation;
+    @Setter private LocalDate lastChanged;
 
     public Note(String title, String text, String tags) {
         this.title = title;
         this.text = text;
         this.tags = splitTags(tags);
-        dateOfCreation = LocalDate.now();
+        lastChanged = LocalDate.now();
     }
 
     public Note(ContentOfNote content) {

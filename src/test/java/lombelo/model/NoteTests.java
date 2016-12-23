@@ -32,7 +32,7 @@ public class NoteTests {
 
     @Test
     public void createdNoteRight() {
-        assertThat(note.getDateOfCreation(), is(LocalDate.now()));
+        assertThat(note.getLastChanged(), is(LocalDate.now()));
         assertThat(note.getTitle(), is("title"));
         assertThat(note.getTags(), is(Sets.newSet("a", "b", "c", "d", "e")));
         assertThat(note.getTagsAsString(), is("a, b, c, d, e"));
@@ -44,7 +44,7 @@ public class NoteTests {
     @Test
     public void createNoteWithRightDate() {
         Note newNote = new Note("", "", "");
-        assertThat(newNote.getDateOfCreation(), is(LocalDate.now()));
+        assertThat(newNote.getLastChanged(), is(LocalDate.now()));
     }
 
 }
