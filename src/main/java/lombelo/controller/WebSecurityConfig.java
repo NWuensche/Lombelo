@@ -39,18 +39,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         Optional<Account> foundAccount = StreamSupport.stream(accounts.findAll().spliterator(), false).findAny();
-        Account account;
-        if(!foundAccount.isPresent()) {
-            account = new Account("user", "password");
-            accounts.save(account);
-        }
-        else {
-            account = foundAccount.get();
-        }
+        String userName = foundAccount.isPresent() ? foundAccount.get().getUserName() : "user";
+        String password = foundAccount.isPresent() ? foundAccount.get().getPassword() : "password";
 
         auth
                 .inMemoryAuthentication()
-                .withUser(account.getUserName()).password(account.getPassword()).roles("USER");
+                .withUser(userName).password(password).roles("USER");
     }
 
 }
