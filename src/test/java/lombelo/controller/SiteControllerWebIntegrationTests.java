@@ -1,7 +1,7 @@
 package lombelo.controller;
 import lombelo.AbstractionWebIntegrationTests;
 import lombelo.model.Account;
-import lombelo.model.AccountRepository;
+import lombelo.model.UserAccountRepository;
 import lombelo.model.Note;
 import lombelo.model.NoteRepository;
 import org.junit.Test;
@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class SiteControllerWebIntegrationTests extends AbstractionWebIntegrationTests {
 
     @Autowired private NoteRepository notes;
-    @Autowired private AccountRepository accounts;
+    @Autowired private UserAccountRepository accounts;
 
     @Test
     public void executeLandingPageMapper() throws Exception {

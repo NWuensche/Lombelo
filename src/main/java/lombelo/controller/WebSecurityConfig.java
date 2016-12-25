@@ -1,7 +1,7 @@
 package lombelo.controller;
 
 import lombelo.model.Account;
-import lombelo.model.AccountRepository;
+import lombelo.model.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,7 +19,8 @@ import java.util.stream.StreamSupport;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired AccountRepository accounts;
+    @Autowired
+    UserAccountRepository accounts;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

@@ -17,7 +17,7 @@ import java.util.Optional;
 public class SiteController {
 
     @Autowired NoteRepository notes;
-    @Autowired AccountRepository accounts;
+    @Autowired UserAccountRepository accounts;
 
     @RequestMapping("/")
     public String mapLandingPage() {
