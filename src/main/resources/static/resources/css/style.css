@@ -18,12 +18,7 @@
     transition: all 0.4s ease 0s;
 }
 
-.sidebar-item {
-    margin-top: 2%;
-    font-family: 'Lato', sans-serif;
-    font-size: 25pt;
-    color:white
-}
+
 
 #page-content-wrapper {
     width: 100%;
@@ -31,17 +26,27 @@
 
 .sidebar-nav {
     position: absolute;
-    top: 13%;
+    top: 35%;
     width: 250px;
     list-style: none;
     margin: 0;
     padding: 0;
+    background-color: cornflowerblue;
+    border-radius: 0% 15% 15% 0%;
+}
+
+.sidebar-item {
+    margin-top: 2%;
+    font-family: 'Lato', sans-serif;
+    font-size: 25pt;
+    color:white;
 }
 
 .sidebar-brand {
     position: absolute;
     top: 4%;
-
+    left: 20%;
+    font-size: 40px;
 }
 
 #textOfNote {
@@ -101,13 +106,13 @@
 }
 .form-signin input[type="text"]
 {
-    margin-bottom: -1px;
+    margin-bottom: 10px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 .form-signin input[type="password"]
 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
@@ -126,23 +131,4 @@
     font-size: 18px;
     font-weight: 400;
     display: block;
-}
-.profile-img
-{
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-.need-help
-{
-    margin-top: 10px;
-}
-.new-account
-{
-    display: block;
-    margin-top: 10px;
 }
