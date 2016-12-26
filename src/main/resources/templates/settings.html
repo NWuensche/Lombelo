@@ -16,16 +16,18 @@
 <body>
 
 <div id="wrapper">
+    <!-- Sidebar -->
     <div id="sidebar-wrapper">
-
-        <a href="#" class="sidebar-item sidebar-brand">Lombelo</a>
+        <a th:href="@{/}" class="sidebar-item sidebar-brand">Lombelo</a>
         <ul class="sidebar-nav">
             <a th:href="@{/addNote}"><li class="sidebar-item"> Add Note </li> </a>
             <hr/>
-            <a href="#"><li class="sidebar-item"> All Notes </li> </a>
-            <a href="#"><li class="sidebar-item"> Another link </li> </a>
+            <a th:href="@{/showNotes}"><li class="sidebar-item"> All Notes </li> </a>
+            <a th:href="@{/settings}"><li class="sidebar-item"> Settings </li> </a>
+            <a th:href="@{/logout}"><li class="sidebar-item"  th:if="${#httpServletRequest.isUserInRole('USER')}"> Sign out </li></a>
         </ul>
     </div>
+
     <div id="page-content-wrapper">
         <div class="page-content">
             <div class="container">
