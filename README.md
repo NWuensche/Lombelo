@@ -15,3 +15,6 @@
 ``bash
 $ mvn spring-boot:run
 ``
+
+## Login
+Standard login is: "user" as username, "password" as password
