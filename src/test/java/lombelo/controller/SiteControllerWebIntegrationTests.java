@@ -39,6 +39,14 @@ public class SiteControllerWebIntegrationTests extends AbstractionWebIntegration
     }
 
     @Test
+    public void executeLoginPageMapper() throws Exception {
+        RequestBuilder serviceRequest = post("/login");
+
+        mvc.perform(serviceRequest)
+                .andExpect(view().name("login"));
+    }
+
+    @Test
     public void executeAddNoteMapper() throws Exception {
         RequestBuilder serviceRequest = post("/addNote");
 
