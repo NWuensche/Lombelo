@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -14,7 +14,6 @@
     </head>
 
     <body>
-
     <div id="wrapper">
 
         <!-- Sidebar -->
@@ -25,6 +24,7 @@
                 <hr/>
                 <a th:href="@{/showNotes}"><li class="sidebar-item"> All Notes </li> </a>
                 <a th:href="@{/settings}"><li class="sidebar-item"> Settings </li> </a>
+                <a th:href="@{/logout}"><li class="sidebar-item"  th:if="${#httpServletRequest.isUserInRole('USER')}"> Sign out </li></a>
             </ul>
         </div>
 
