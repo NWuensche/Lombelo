@@ -9,6 +9,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
         <title>Getting Started: Serving Web Content</title>
     </head>
@@ -32,30 +33,34 @@
         <div id="page-content-wrapper">
             <div class="page-content">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form method="post" th:action="@{/showNotes}">
-                                <div class="form__bg">
+                    <nav class="navbar">
+                        <form method="post" th:action="@{/showNotes}" class="navbar-form navbar-right">
+                            <div class="row">
+                                <div class="nav navbar-nav navbar-right">
                                     <div class="form-group">
-                                        <label>Tags</label>
-                                        <input name="searchTags" type="text" class="form-control" placeholder="Tags"
-                                               required="false"/>
+                                        <input name="searchTags" type="text" class="form-control"
+                                               placeholder="Search for Tags" required="false"/>
                                     </div>
 
-                                    <div class="row">
-                                        <div class=" col-xs-6 text-xs-right">
-                                            <button type="submit" class="button btn btn-primary" autofocus="autofocus">
-                                                Search
-                                            </button>
-                                        </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="button btn btn-primary" autofocus="autofocus">
+                                            <i class="fa fa-search"/>
+                                        </button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+                        </form>
+
+                    </nav>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="container__table">
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Date of Last Change</th>
+                                        <th>Last Changed</th>
                                         <th>Title</th>
                                         <th>Tags</th>
                                     </tr>
@@ -68,13 +73,13 @@
                                         <td>
                                             <a th:href = "@{'/editNote/' + ${note.id}}">
                                                 <button type="button" class="btn btn-primary" data-toggle="modal">
-                                                edit
+                                                edit <i class="fa fa-edit"/>
                                                 </button>
                                             </a>
 
                                             <a th:href = "@{'/removeNote/' + ${note.id}}">
                                             <button type="button" class="btn" data-toggle="modal">
-                                                remove
+                                                remove <i class="fa fa-remove"/>
                                             </button>
                                             </a>
 
